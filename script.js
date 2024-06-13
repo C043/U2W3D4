@@ -5,13 +5,6 @@ const form = document.querySelector("form");
 const cardSpace = document.getElementById("card-container");
 cardSpace.innerHTML = "";
 
-const detailsPage = ev => {
-  const id = ev.currentTarget.innerText;
-  console.log(id);
-  /*   window.location.assign("./details/?photoId=" + id + ".html");
-   */
-};
-
 const delCard = ev => {
   const target = ev.currentTarget.closest(".col-md-4");
   target.remove();
@@ -28,7 +21,15 @@ const singleCardGen = (src, title, photographer, id) => {
   const img = document.createElement("img");
   img.src = src;
   img.alt = title;
-  img.onclick = detailsPage;
+  img.onclick = function (ev) {
+    const imgObj = {
+      title: title,
+      id: id,
+    };
+    console.log(imgObj);
+    console.log(window.location);
+    window.location.replace("/details.html?photoId=" + imgObj.id);
+  };
 
   const body = document.createElement("div");
   body.className = "card-body";
