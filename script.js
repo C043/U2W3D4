@@ -10,8 +10,6 @@ const delCard = ev => {
   target.remove();
 };
 
-const modal = () => {};
-
 /* funzione che genera una carta */
 const singleCardGen = (src, title, photographer, id) => {
   const col = document.createElement("div");
