@@ -24,14 +24,7 @@ const singleCardGen = (src, title, photographer, id) => {
   img.setAttribute("role", "button");
 
   img.onclick = function () {
-    const imgObj = {
-      title: title,
-      id: id,
-      src: src,
-    };
-    console.log(imgObj);
-    console.log(window.location);
-    window.location.replace("/details.html?photoId=" + imgObj.id);
+    window.location.replace("/details.html?photoId=" + id);
   };
 
   const body = document.createElement("div");
@@ -42,14 +35,7 @@ const singleCardGen = (src, title, photographer, id) => {
   h5.innerText = title;
   h5.setAttribute("role", "button");
   h5.onclick = function () {
-    const imgObj = {
-      title: title,
-      id: id,
-      src: src,
-    };
-    console.log(imgObj);
-    console.log(window.location);
-    window.location.replace("/details.html?photoId=" + imgObj.id);
+    window.location.replace("/details.html?photoId=" + id);
   };
 
   const p = document.createElement("p");
@@ -75,16 +61,10 @@ const singleCardGen = (src, title, photographer, id) => {
   editBtn.setAttribute("data-bs-toggle", "modal");
   editBtn.setAttribute("data-bs-target", "#imgModal");
   editBtn.onclick = function () {
-    const imgObj = {
-      title: title,
-      id: id,
-      src: src,
-    };
-
     const titleModal = document.querySelector(".modal-header h1");
     const imgModal = document.querySelector(".modal-body img");
-    imgModal.src = imgObj.src;
-    titleModal.innerText = imgObj.title;
+    imgModal.src = src;
+    titleModal.innerText = title;
   };
 
   const small = document.createElement("small");
@@ -99,6 +79,7 @@ const singleCardGen = (src, title, photographer, id) => {
   cardSpace.append(col);
 };
 
+/* funzione che prende i dati dal server in base all'url */
 const get = url => {
   fetch(url, {
     headers: {
