@@ -4,6 +4,11 @@ const imgBtn2 = document.getElementById("img-loader-2");
 const cardSpace = document.getElementById("card-container");
 cardSpace.innerHTML = "";
 
+const delCard = ev => {
+  const target = ev.currentTarget.closest(".col-md-4");
+  target.remove();
+};
+
 /* funzione che genera una carta */
 const singleCardGen = (src, title, photographer, id) => {
   const col = document.createElement("div");
@@ -37,6 +42,7 @@ const singleCardGen = (src, title, photographer, id) => {
   hideBtn.className = "btn btn-sm btn-outline-danger";
   hideBtn.innerText = "Hide";
   hideBtn.type = "button";
+  hideBtn.onclick = delCard;
 
   const editBtn = document.createElement("button");
   editBtn.className = "btn btn-sm btn-outline-secondary";
@@ -87,7 +93,5 @@ const cardGen = (ev, query) => {
   }
 };
 
-/* const eventHandle = () => cardGen("click", 1);
- */
 imgBtn1.onclick = cardGen;
 imgBtn2.onclick = cardGen;
