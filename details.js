@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
       title.innerText = imgData.alt;
       photographerUrl.innerText = imgData.photographer;
       photographerUrl.href = imgData.photographer_url;
-      photographerUrl.className = "btn btn-link";
+      photographerUrl.className = "btn mb-4";
       /* converto il colore hex in rgba e assegno al body un tema scuro 
       se il colore è troppo scuro */
       const hex = imgData.avg_color;
