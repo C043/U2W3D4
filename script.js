@@ -10,6 +10,8 @@ const delCard = ev => {
   target.remove();
 };
 
+const modal = () => {};
+
 /* funzione che genera una carta */
 const singleCardGen = (src, title, photographer, id) => {
   const col = document.createElement("div");
@@ -25,6 +27,7 @@ const singleCardGen = (src, title, photographer, id) => {
     const imgObj = {
       title: title,
       id: id,
+      src: src,
     };
     console.log(imgObj);
     console.log(window.location);
@@ -56,8 +59,20 @@ const singleCardGen = (src, title, photographer, id) => {
 
   const editBtn = document.createElement("button");
   editBtn.className = "btn btn-sm btn-outline-secondary";
-  editBtn.innerText = "Edit";
+  editBtn.innerText = "View";
   editBtn.type = "button";
+  editBtn.setAttribute("data-bs-toggle", "modal");
+  editBtn.setAttribute("data-bs-target", "#imgModal");
+  editBtn.onclick = function () {
+    const imgObj = {
+      title: title,
+      id: id,
+      src: src,
+    };
+
+    const imgModal = document.querySelector(".modal-body img");
+    imgModal.src = imgObj.src;
+  };
 
   const small = document.createElement("small");
   small.className = "text-muted";
