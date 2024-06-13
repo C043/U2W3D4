@@ -24,7 +24,19 @@ window.addEventListener("DOMContentLoaded", () => {
       photographerUrl.innerText = imgData.photographer;
       photographerUrl.href = imgData.photographer_url;
       photographerUrl.className = "btn btn-link";
-      body.style.backgroundColor = imgData.avg_color;
+      /* converto il colore hex in rgba e assegno al body un tema scuro 
+      se il colore è troppo scuro */
+      const hex = imgData.avg_color;
+      const red = parseInt(hex.substring(1, 3), 16);
+      const green = parseInt(hex.substring(3, 5), 16);
+      const blue = parseInt(hex.substring(5, 7), 16);
+      const rgba = `rgba(${red}, ${green}, ${blue}, 1)`;
+      console.log(imgData.avg_color);
+      body.style.backgroundColor = rgba;
+
+      if (red + green + blue < 500) {
+        body.setAttribute("data-bs-theme", "dark");
+      }
     })
     .catch(err => console.log(err));
 });

@@ -38,7 +38,7 @@ const singleCardGen = (src, title, photographer, id) => {
   body.className = "card-body";
 
   const h5 = document.createElement("h5");
-  h5.className = "card-title pointer";
+  h5.className = "card-title pointer line-clamp";
   h5.innerText = title;
   h5.setAttribute("role", "button");
   h5.onclick = function () {
