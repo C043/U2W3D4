@@ -129,10 +129,10 @@ const cardGen = (ev, query) => {
   cardSpace.innerHTML = "";
   const target = ev.target.innerText;
   if (target === "Load Images") {
-    const url = "https://api.pexels.com/v1/search?query=dog";
+    const url = "https://api.pexels.com/v1/search?query=beach";
     get(url);
   } else if (target === "Load Secondary Images") {
-    const url = "https://api.pexels.com/v1/search?query=cat";
+    const url = "https://api.pexels.com/v1/search?query=mountain";
     get(url);
   } else {
     const url = "https://api.pexels.com/v1/search?query=" + query;

@@ -31,7 +31,6 @@ window.addEventListener("DOMContentLoaded", () => {
       const green = parseInt(hex.substring(3, 5), 16);
       const blue = parseInt(hex.substring(5, 7), 16);
       const rgba = `rgba(${red}, ${green}, ${blue}, 1)`;
-      console.log(imgData.avg_color);
       body.style.backgroundColor = rgba;
 
       if (red + green + blue < 500) {
