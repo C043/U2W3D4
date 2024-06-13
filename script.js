@@ -1,8 +1,10 @@
 const imgBtn1 = document.getElementById("img-loader-1");
+const imgBtn2 = document.getElementById("img-loader-2");
+
 const cardSpace = document.getElementById("card-container");
-console.log(cardSpace);
 cardSpace.innerHTML = "";
 
+/* funzione che genera una carta */
 const singleCardGen = (src, title, photographer, id) => {
   const col = document.createElement("div");
   col.className = "col-md-4";
@@ -53,30 +55,39 @@ const singleCardGen = (src, title, photographer, id) => {
   cardSpace.append(col);
 };
 
+const get = url => {
+  fetch(url, {
+    headers: {
+      Authorization: "xVuah0OyDOwHaZluvvqyhPLNuxVpCwR4PpkHfPQtYvjYwrwayVXUBwNQ",
+    },
+  })
+    .then(resp => resp.json())
+    .then(images => {
+      const imgArray = images.photos;
+      console.log(imgArray);
+      imgArray.forEach(img => {
+        const { src, alt, photographer, id } = img;
+        singleCardGen(src.portrait, alt, photographer, id);
+      });
+    })
+    .catch(err => console.log(err));
+};
+
 /* funzione che genera tutte le card al click dei pulsanti */
 const cardGen = (ev, query) => {
-  if (query === 1) {
-    console.log(query);
-    fetch("https://api.pexels.com/v1/search?query=dog", {
-      headers: {
-        Authorization: "xVuah0OyDOwHaZluvvqyhPLNuxVpCwR4PpkHfPQtYvjYwrwayVXUBwNQ",
-      },
-    })
-      .then(resp => resp.json())
-      .then(images => {
-        const imgArray = images.photos;
-        console.log(imgArray);
-        imgArray.forEach(img => {
-          const { src, alt, photographer, id } = img;
-          singleCardGen(src.portrait, alt, photographer, id);
-        });
-      })
-      .catch(err => console.log(err));
+  cardSpace.innerHTML = "";
+  const target = ev.target.innerText;
+  if (target === "Load Images") {
+    const url = "https://api.pexels.com/v1/search?query=dog";
+    get(url);
+  } else if (target === "Load Secondary Images") {
+    const url = "https://api.pexels.com/v1/search?query=cat";
+    get(url);
   } else {
-    ev.preventDefault();
   }
 };
 
-const eventHandle = () => cardGen("click", 1);
-
-imgBtn1.onclick = eventHandle;
+/* const eventHandle = () => cardGen("click", 1);
+ */
+imgBtn1.onclick = cardGen;
+imgBtn2.onclick = cardGen;
