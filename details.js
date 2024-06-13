@@ -1,5 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const id = params.get("photoId");
+const body = document.querySelector("body");
 console.log(id);
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -23,6 +24,7 @@ window.addEventListener("DOMContentLoaded", () => {
       photographerUrl.innerText = imgData.photographer;
       photographerUrl.href = imgData.photographer_url;
       photographerUrl.className = "btn btn-link";
+      body.style.backgroundColor = imgData.avg_color;
     })
     .catch(err => console.log(err));
 });
