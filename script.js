@@ -1,5 +1,6 @@
 const imgBtn1 = document.getElementById("img-loader-1");
 const imgBtn2 = document.getElementById("img-loader-2");
+const form = document.querySelector("form");
 
 const cardSpace = document.getElementById("card-container");
 cardSpace.innerHTML = "";
@@ -81,6 +82,7 @@ const get = url => {
 
 /* funzione che genera tutte le card al click dei pulsanti */
 const cardGen = (ev, query) => {
+  ev.preventDefault();
   cardSpace.innerHTML = "";
   const target = ev.target.innerText;
   if (target === "Load Images") {
@@ -90,8 +92,16 @@ const cardGen = (ev, query) => {
     const url = "https://api.pexels.com/v1/search?query=cat";
     get(url);
   } else {
+    const url = "https://api.pexels.com/v1/search?query=" + query;
+    get(url);
   }
+};
+
+const formHandler = event => {
+  const query = document.getElementById("search").value;
+  cardGen(event, query);
 };
 
 imgBtn1.onclick = cardGen;
 imgBtn2.onclick = cardGen;
+form.onsubmit = formHandler;

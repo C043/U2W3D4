@@ -127,6 +127,16 @@
           <p class="lead text-muted">
             This page will dynamically load pictures from the web, and display them in a cool way!
           </p>
+          <form>
+            <div class="mb-3">
+              <label for="search" class="form-label">Search</label>
+              <div class="d-flex">
+                <input type="text" class="form-control" id="search" aria-describedby="searchHelp" required />
+                <button type="submit" class="btn btn-primary">Search</button>
+              </div>
+              <div id="searchHelp" class="form-text">Search for your favorite things!</div>
+            </div>
+          </form>
           <p>
             <a href="#" class="btn btn-primary my-2" id="img-loader-1">Load Images</a>
             <a href="#" class="btn btn-secondary my-2" id="img-loader-2">Load Secondary Images</a>
