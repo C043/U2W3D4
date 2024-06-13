@@ -21,7 +21,9 @@ const singleCardGen = (src, title, photographer, id) => {
   const img = document.createElement("img");
   img.src = src;
   img.alt = title;
-  img.onclick = function (ev) {
+  img.setAttribute("role", "button");
+
+  img.onclick = function () {
     const imgObj = {
       title: title,
       id: id,
@@ -36,8 +38,19 @@ const singleCardGen = (src, title, photographer, id) => {
   body.className = "card-body";
 
   const h5 = document.createElement("h5");
-  h5.className = "card-title";
+  h5.className = "card-title pointer";
   h5.innerText = title;
+  h5.setAttribute("role", "button");
+  h5.onclick = function () {
+    const imgObj = {
+      title: title,
+      id: id,
+      src: src,
+    };
+    console.log(imgObj);
+    console.log(window.location);
+    window.location.replace("/details.html?photoId=" + imgObj.id);
+  };
 
   const p = document.createElement("p");
   p.className = "card-text";
@@ -68,8 +81,10 @@ const singleCardGen = (src, title, photographer, id) => {
       src: src,
     };
 
+    const titleModal = document.querySelector(".modal-header h1");
     const imgModal = document.querySelector(".modal-body img");
     imgModal.src = imgObj.src;
+    titleModal.innerText = imgObj.title;
   };
 
   const small = document.createElement("small");
